@@ -1,0 +1,35 @@
+
+<section style="padding: 5px;">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    <form fxLayout="column" fxLayoutGap="10px" fxLayoutAlign.lt-lg="center center" fxLayoutAlign="center start" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <h2>New User:</h2>
+        <mat-form-field appearance="fill">
+            <mat-label>First name</mat-label>
+            <input matInput id="firstName" formControlName="firstName">
+            <mat-error *ngIf="userForm.controls['firstName'].hasError('required')">Field is required</mat-error>
+            <mat-error *ngIf="userForm.controls['firstName'].hasError('maxlength')">Filed must be less or equal to 20 characters</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Last name</mat-label>
+            <input matInput id="lastName" formControlName="lastName">
+            <mat-error *ngIf="userForm.controls['lastName'].hasError('required')">Field is required</mat-error>
+            <mat-error *ngIf="userForm.controls['lastName'].hasError('maxlength')">Filed must be less or equal to 20 characters</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Address</mat-label>
+            <input matInput id="address" formControlName="address">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Date of birth</mat-label>
+            <input matInput [matDatepicker]="picker" id="dateOfBirth" formControlName="dateOfBirth">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="userForm.controls['dateOfBirth'].hasError('matDatepickerParse')">Invalid date format</mat-error>
+        </mat-form-field>
+
+        <button [disabled]="userForm.invalid || loading" type="submit" mat-raised-button color="primary">Create</button>
+    </form>
+</section>

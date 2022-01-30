@@ -1,0 +1,15 @@
+<section style="padding: 5px;">
+    <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign.lt-lg="center center" fxLayoutAlign="center start">
+        <h2>Users:</h2>
+        <mat-list>
+            <mat-list-item *ngFor="let user of users; index as i;">
+
+                <div mat-line><h2>{{user.firstName + ' ' + user.lastName}} <span> <button mat-icon-button (click)="onDeleteUser(i)" color="warn"><mat-icon>delete</mat-icon></button></span></h2> </div>
+                <div mat-line><p>{{'Address: ' + user.address}}</p></div>
+                <div mat-line><p>{{ 'Date of birth: ' + (user.dateOfBirth|date:'dd - MMM - yyyy')}}</p></div>
+                <div mat-line></div>
+            </mat-list-item>
+        </mat-list>
+        <button style="float: right;" mat-raised-button color="primary" routerLink="/user">Create user</button>
+    </div>
+</section>
